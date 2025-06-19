@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Paciente</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Panel de Paciente</h1>
+        <div id="userInfo"></div>
+        <button id="logoutBtn" style="display:none;">Cerrar Sesión</button>
+    </header>
+    
+    <div class="content">
+        <h2>Agendar Cita</h2>
+        <form id="citaForm">
+            <div class="form-group">
+                <label for="doctor_id">Doctor:</label>
+                <select id="doctor_id" required></select>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" min="07:00" max="22:00" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" required>
+            </div>
+            <button type="submit">Agendar Cita</button>
+        </form>
+        <div id="message"></div>
+        
+        <h2>Citas Agendadas</h2>
+        <div id="citasList"></div>
+    </div>
+    
+    <script src="js/paciente.js"></script>
+</body>
+</html>
