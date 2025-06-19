@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Paciente</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+    <h1>Panel del Paciente</h1>
+    <div id="bienvenidaUsuario"></div>
+    <button id="logoutBtn">Cerrar Sesión</button>
+</header>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="agendar">Agendar Cita</button>
+        <button class="tab-btn" data-tab="mis-citas">Mis Citas</button>
+    </div>
+
+    <div class="tab-content active" id="agendar">
+        <h2>Agendar Nueva Cita</h2>
+        <form id="citaForm">
+            <div class="form-group">
+                <label for="doctorSelect">Doctor:</label>
+                <select id="doctorSelect" required>
+                    <option value="">Seleccione un doctor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fechaCita">Fecha:</label>
+                <input type="date" id="fechaCita" required min="">
+            </div>
+            <div class="form-group">
+                <label for="horaCita">Hora:</label>
+                <input type="time" id="horaCita" required>
+            </div>
+            <div class="form-group">
+                <label for="urgencia">Nivel de Urgencia:</label>
+                <select id="urgencia" required>
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                </select>
+            </div>
+            <div class="note">
+                <p><strong>Nota:</strong> Si el doctor tiene un caso urgente, su cita podría ser reprogramada por el personal de recepción.</p>
+            </div>
+            <button type="submit">Agendar Cita</button>
+        </form>
+    </div>
+
+    <div class="tab-content" id="mis-citas">
+        <h2>Mis Citas Programadas</h2>
+        <div class="search-box">
+            <input type="text" id="searchCitas" placeholder="Buscar citas...">
+            <button id="searchCitasBtn">Buscar</button>
+        </div>
+        <div id="citasList"></div>
+    </div>
+
+<script src="js/paciente.js?v=2"></script>
+</body>
+</html>

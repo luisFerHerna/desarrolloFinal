@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Recepción - Sistema Hospitalario</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header class="main-header">
+        <h1>Panel de Recepción</h1>
+        <div class="header-actions">
+            <span id="current-user"></span>
+            <button id="logoutBtn" class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <nav class="tabs-navigation">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pacientes" aria-label="Pestaña Pacientes">
+                <i class="fas fa-user-injured"></i> Pacientes
+            </button>
+            <button class="tab-btn" data-tab="doctores" aria-label="Pestaña Doctores">
+                <i class="fas fa-user-md"></i> Doctores
+            </button>
+            <button class="tab-btn" data-tab="farmacia" aria-label="Pestaña Farmacia">
+                <i class="fas fa-pills"></i> Farmacia
+            </button>
+            <button class="tab-btn" data-tab="citas" aria-label="Pestaña Citas">
+                <i class="fas fa-calendar-alt"></i> Citas
+            </button>
+        </div>
+    </nav>
+
+    <main class="content-area">
+        <!-- Sección Pacientes -->
+        <section class="tab-content active" id="pacientes" role="tabpanel" aria-labelledby="pacientes-tab">
+            <div class="section-header">
+                <h2>Gestión de Pacientes</h2>
+                <div class="section-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchPaciente" placeholder="Buscar paciente..." aria-label="Buscar pacientes" />
+                        <button id="searchPacienteBtn" class="search-btn">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                    <button id="addPacienteBtn" class="add-btn">
+                        <i class="fas fa-plus"></i> Agregar Paciente
+                    </button>
+                </div>
+            </div>
+            
+            <div class="priority-selector">
+                <span>Filtrar por prioridad:</span>
+                <button class="priority-filter active" data-priority="all">Todos</button>
+                <button class="priority-filter" data-priority="alta">Alta</button>
+                <button class="priority-filter" data-priority="media">Media</button>
+                <button class="priority-filter" data-priority="baja">Baja</button>
+            </div>
+            
+            <div id="pacientesList" class="data-table-container">
+                <!-- Los pacientes se cargarán aquí dinámicamente -->
+                <div class="loading-message">Cargando pacientes...</div>
+            </div>
+        </section>
+
+        <!-- Sección Doctores -->
+        <section class="tab-content" id="doctores" role="tabpanel" aria-labelledby="doctores-tab">
+            <div class="section-header">
+                <h2>Gestión de Doctores</h2>
+                <div class="section-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchDoctor" placeholder="Buscar doctor..." aria-label="Buscar doctores" />
+                        <button id="searchDoctorBtn" class="search-btn">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                    <button id="addDoctorBtn" class="add-btn">
+                        <i class="fas fa-plus"></i> Agregar Doctor
+                    </button>
+                </div>
+            </div>
+            
+            <div id="doctoresList" class="data-table-container">
+                <!-- Los doctores se cargarán aquí dinámicamente -->
+                <div class="loading-message">Cargando doctores...</div>
+            </div>
+        </section>
+
+        <!-- Sección Farmacia -->
+        <section class="tab-content" id="farmacia" role="tabpanel" aria-labelledby="farmacia-tab">
+            <div class="section-header">
+                <h2>Gestión de Farmacia</h2>
+                <div class="section-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchFarmacia" placeholder="Buscar encargado..." aria-label="Buscar encargados de farmacia" />
+                        <button id="searchFarmaciaBtn" class="search-btn">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                    <button id="addFarmaciaBtn" class="add-btn">
+                        <i class="fas fa-plus"></i> Agregar Encargado
+                    </button>
+                </div>
+            </div>
+            
+            <div id="farmaciaList" class="data-table-container">
+                <!-- Los encargados de farmacia se cargarán aquí dinámicamente -->
+                <div class="loading-message">Cargando encargados de farmacia...</div>
+            </div>
+        </section>
+
+        <!-- Sección Citas -->
+        <section class="tab-content" id="citas" role="tabpanel" aria-labelledby="citas-tab">
+            <div class="section-header">
+                <h2>Gestión de Citas</h2>
+                <div class="section-actions">
+                    <div class="search-box">
+                        <input type="date" id="searchCitaFecha" aria-label="Buscar citas por fecha" />
+                        <button id="searchCitaBtn" class="search-btn">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                    <button id="addCitaBtn" class="add-btn">
+                        <i class="fas fa-plus"></i> Agregar Cita
+                    </button>
+                </div>
+            </div>
+            
+            <div id="citasList" class="data-table-container">
+                <!-- Las citas se cargarán aquí dinámicamente -->
+                <div class="loading-message">Cargando citas...</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para agregar/editar -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button class="close" aria-label="Cerrar modal">&times;</button>
+                <h2 id="modalTitle">Agregar Nuevo</h2>
+                <form id="modalForm">
+                    <input type="hidden" id="modalId" />
+                    <div id="modalFields" class="form-fields"></div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="modalCancel">Cancelar</button>
+                        <button type="submit" class="submit-btn" id="modalSubmit">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
+    <script src="js/recepcion.js"></script>
+</body>
+</html>
