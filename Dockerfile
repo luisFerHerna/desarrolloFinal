@@ -1,7 +1,8 @@
 FROM php:8.2-apache
 
 # Instalar dependencias del sistema
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
@@ -11,7 +12,10 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-venv \
     curl \
-    git
+    git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # Crear y activar entorno virtual Python
 RUN python3 -m venv /opt/venv
