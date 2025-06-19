@@ -72,4 +72,4 @@ class Receta:
         
         cursor.close()
         conn.close()
-        return recetas
+        return recetas# Version F
