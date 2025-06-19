@@ -10,7 +10,7 @@ services:
       MYSQL_USER: hospital_user
       MYSQL_PASSWORD: hospital_pass
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./backend/database:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql

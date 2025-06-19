@@ -1,3 +1,4 @@
+#paciente
 import mysql.connector
 # O alternativamente:
 from mysql.connector import connect
