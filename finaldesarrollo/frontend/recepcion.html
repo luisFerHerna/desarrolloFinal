@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Panel de Recepción</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        .priority-high { background-color: #ffcccc; }
+        .priority-medium { background-color: #ffffcc; }
+        .priority-low { background-color: #ccffcc; }
+        .priority-selector { margin: 10px 0; }
+        .priority-selector button { margin-right: 5px; padding: 5px 10px; }
+        .priority-selector button.active { font-weight: bold; border: 2px solid #333; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Panel de Recepción</h1>
+        <button id="logoutBtn">Cerrar Sesión</button>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="pacientes">Pacientes</button>
+        <button class="tab-btn" data-tab="doctores">Doctores</button>
+        <button class="tab-btn" data-tab="farmacia">Encargados Farmacia</button>
+        <button class="tab-btn" data-tab="citas">Citas</button>
+    </div>
+
+    <div class="tab-content active" id="pacientes">
+        <h2>Gestión de Pacientes</h2>
+        <div class="search-box">
+            <input type="text" id="searchPaciente" placeholder="Buscar paciente..." />
+            <button id="searchPacienteBtn">Buscar</button>
+            <button id="addPacienteBtn">Agregar Paciente</button>
+        </div>
+        <div class="priority-selector">
+            <button class="priority-filter active" data-priority="all">Todos</button>
+            <button class="priority-filter" data-priority="alta">Alta Prioridad</button>
+            <button class="priority-filter" data-priority="media">Media Prioridad</button>
+            <button class="priority-filter" data-priority="baja">Baja Prioridad</button>
+        </div>
+        <div id="pacientesList"></div>
+    </div>
+
+    <div class="tab-content" id="doctores">
+        <h2>Gestión de Doctores</h2>
+        <div class="search-box">
+            <input type="text" id="searchDoctor" placeholder="Buscar doctor..." />
+            <button id="searchDoctorBtn">Buscar</button>
+            <button id="addDoctorBtn">Agregar Doctor</button>
+        </div>
+        <div id="doctoresList"></div>
+    </div>
+
+    <div class="tab-content" id="farmacia">
+        <h2>Gestión de Encargados de Farmacia</h2>
+        <div class="search-box">
+            <input type="text" id="searchFarmacia" placeholder="Buscar encargado..." />
+            <button id="searchFarmaciaBtn">Buscar</button>
+            <button id="addFarmaciaBtn">Agregar Encargado</button>
+        </div>
+        <div id="farmaciaList"></div>
+    </div>
+
+    <div class="tab-content" id="citas">
+        <h2>Gestión de Citas</h2>
+        <div class="search-box">
+            <input type="date" id="searchCitaFecha" />
+            <button id="searchCitaBtn">Buscar por Fecha</button>
+            <button id="addCitaBtn">Agregar Cita</button>
+        </div>
+        <div id="citasList"></div>
+    </div>
+
+    <!-- Modal para agregar/editar -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Agregar Nuevo</h2>
+            <form id="modalForm">
+                <input type="hidden" id="modalId" />
+                <div id="modalFields"></div>
+                <button type="submit" id="modalSubmit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/recepcion.js"></script>
+</body>
+</html>
